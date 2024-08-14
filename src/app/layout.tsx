@@ -14,6 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="pt-BR">
       <head>
         <link rel="shortcut icon" href="https://cdn.prod.website-files.com/605b962d5e846a3de31701a8/648b24d8187619f2fe5e532f_favicon-32x32.png" type="image/x-icon" />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       </head>
       <body className={inter.className}>{children}</body>
     </html>
