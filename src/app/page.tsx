@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ResultsList from "./components/result-list";
 import SearchForm from "./components/search-form";
+import TenCitiesModal from "./components/ten-cities-modal";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <SearchForm />
         <ResultsList />
       </div>
+      <TenCitiesModal />
     </main>
   );
 }

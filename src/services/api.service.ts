@@ -35,6 +35,7 @@ class ApiService {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                cache: 'no-cache'
             })).json()
         } catch (error) {
             return error
