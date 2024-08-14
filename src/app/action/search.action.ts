@@ -16,12 +16,10 @@ export async function searchAction(state: any, form: FormData) {
         device
     }
 
-    try {
-        await searchService.search(data)
-        redirect('/')
-    } catch (error: any) {
-        return { data: null, error: error.message }
-    }
+    const response = await searchService.search(data)
+    if (!response) return { data: null, error: "Erro ao realizar operação" }
+
+    return { data: response, error: null }
 }
 
 export async function searchTenCitiesAction(state: any, form: FormData) {
@@ -37,10 +35,9 @@ export async function searchTenCitiesAction(state: any, form: FormData) {
         email
     }
 
-    try {
-        await searchService.searchTenCities(data)
-        redirect('/')
-    } catch (error: any) {
-        return { data: null, error: error.message }
-    }
+    const response = await searchService.searchTenCities(data)
+    if (!response) return { data: null, error: "Erro ao realizar operação" }
+
+    return { data: response, error: null }
+
 }

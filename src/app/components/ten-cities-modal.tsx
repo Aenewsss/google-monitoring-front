@@ -4,11 +4,13 @@ import citiesService from "@/services/cities.service";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { searchTenCitiesAction } from "../action/search.action";
+import Spinner from "./spinner";
 
 export default function TenCitiesModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [cities, setCities] = useState<string[]>();
     const [state, action] = useFormState(searchTenCitiesAction, undefined)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getCities() {
@@ -19,18 +21,22 @@ export default function TenCitiesModal() {
 
     useEffect(() => {
         if (state?.error) alert(`Ocorreu um erro: ${state.error}`)
-        if (state?.data) alert('Informações salvas com sucesso')
+        if (state?.data) {
+            alert('Informações salvas com sucesso')
+            window.location.reload()
+        }
+        setLoading(false)
     }, [state]);
 
     return (
         <>
-
+            <Spinner visible={loading} />
             {
                 !isModalOpen ?
                     <button onClick={() => setIsModalOpen(true)} className="bg-brand-secondary text-white py-2 px-4 rounded hover:bg-white transition-all hover:text-brand-secondary mt-8 self-center">
                         Buscar em várias cidades
                     </button>
-                    : <div className="absolute w-full top-0 left-0 py-4 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    : <div className="absolute w-full top-0 left-0 py-4 z-40 flex items-center justify-center bg-black bg-opacity-50">
                         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
                             <h2 className="text-2xl font-bold mb-4">Buscar em 10 Cidades</h2>
                             <form action={action} className="flex flex-col gap-4">
@@ -79,7 +85,7 @@ export default function TenCitiesModal() {
                                     <button type="button" onClick={_ => setIsModalOpen(false)} className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700" >
                                         Cancelar
                                     </button>
-                                    <button type="submit" className="bg-brand-primary text-white py-2 px-4 rounded hover:bg-brand-secondary transition-all hover:text-black" >
+                                    <button onClick={_ => setLoading(true)} className="bg-brand-primary text-white py-2 px-4 rounded hover:bg-brand-secondary transition-all hover:text-black" >
                                         Buscar
                                     </button>
                                 </div>
