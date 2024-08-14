@@ -17,7 +17,7 @@ export default function SearchForm() {
     }, []);
 
     return (
-        <form action={action} className="flex flex-col justify-between bg-white p-8 rounded gap-4 shadow-md shadow-black lg:max-w-96">
+        <form action={action} className="flex flex-col justify-between bg-white p-8 rounded gap-4 shadow-md shadow-gray-400 lg:max-w-96">
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-3">
                     <label htmlFor="query" className="font-semibold text-gray-700">Palavras chave</label>
@@ -43,7 +43,7 @@ export default function SearchForm() {
                     </select>
                 </div>
             </div>
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" >Search</button>
+            <button type="submit" className="bg-brand-primary text-white py-2 px-4 rounded hover:bg-brand-secondary transition-all hover:text-black" >Buscar</button>
         </form>
     );
 }
